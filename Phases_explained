@@ -1,11 +1,23 @@
 Recon/Enumeration:
 ------------------
 
-  Information gathering
+  In this phase you're gathering information about the target.
+  Who/What is the target?
+  What ports are open?
+  What services are running?
+  What do those services do?
+  What versions are these services?
 
 Look for vulnerabilities:
 -------------------------
 
+  This stage will highly depend on the context of the target.
+    Is it hosting a web application?
+    Is it a domain controller?
+    Does it have a file share?
+    Do the services running have any known vulnerabilities?
+    Does the service running take input? (Can we manipulate this in sone way?)
+    
 
 Exploit those vulnerabilities:
 ------------------------------
