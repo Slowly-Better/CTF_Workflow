@@ -63,3 +63,7 @@ Gain a shell:
 
 Escalate privileges:
 --------------------
+
+Once you've found a path to escalate you're privileges congratulations! You now own the machine.
+Now you can also do further enumeration and or scan the network and see if there's other hosts you can takeover. 
+You can also try dumping the username and password database and crack the password hashes for more credentials.
