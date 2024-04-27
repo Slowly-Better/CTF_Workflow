@@ -7,6 +7,7 @@ Recon/Enumeration:
   What services are running?
   What do those services do?
   What versions are these services?
+  Are there any subdomains or interesting web-directories?
 
 Look for vulnerabilities:
 -------------------------
@@ -22,8 +23,43 @@ Look for vulnerabilities:
 Exploit those vulnerabilities:
 ------------------------------
 
+  Web:
+    SQL Injection - Used to query/modify database tables (Good for getting usernames and passwords/hashes)
+    File Inclusion/Path Traversal - Used to read files stored on the target
+    File upload - Can be used to get a reverse shell
+    Command injection - Can be used to read files on the target or gain a reverse shell
+
 Gain a shell:
 -------------
+
+  Once you've gained a shell you have direct access to the target machine.
+  Once you gain a shell (depending on how you gained it) you may need to upgrade your shell:
+    Check if they're using python = python --version
+    python -c 'import pty;pty.spawn("/bin/bash")'
+    export TERM=xterm
+    "Ctrl + Z"
+    stty raw -echo
+    fg
+    (Once you are done with your netcat shell, and you return to the terminal on the attacking computer, you will need to run reset to undo the changes we made in step 5 (stty raw -echo).)
+  Once you're on the target machine you will need to do further enumeration:
+    Who is the user that you have access to?
+    What access do they have?
+    What is the OS running? (Are there any known exploits?)
+    Check if you have any write permissions inside the path variable: echo $PATH
+    Check environment variables to see if there's any interesting information in there
+    Check the kernal version to see if there's any known exploits
+    Check if your user has any sudo permissions
+    Check the version of sudo to see if it might be a vulnerable version
+    Check if there's any drives mounted or unmounted
+    Check for the version of the installed packages and services
+    Take a look at what processes are being executed and check if any process has more privileges than it should
+    Check cron jobs to see if there's anything running with a higher privileged user and what RWX permissions are set
+    Check Linux binaries on the target with GTFOBins
+    Check Windows binaries on the target with LOLBAS
+    Try running LinEnum/LinPEAS for Linux and WinEnum/WinPEAS for Windows
+    Check to see if there are any other users on the machine
+    Look for sensitive files
+    Look for binaries running as a privileged user (SUID bits set)
 
 Escalate privileges:
 --------------------
